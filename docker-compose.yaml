@@ -4,7 +4,14 @@ services:
     image: 'nginx:stable-alpine'
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-  # php:
+  php:
+    build: 
+      context: ./dockerfiles
+      dockerfile: php.dockerfile
+    volumes:
+      - ./laravel_app:/var/www/html:delegated
+    ports:
+      - '3000:9000'
   # mysql:
   # composer:
   # artisan:
